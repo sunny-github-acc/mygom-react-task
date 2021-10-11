@@ -5,6 +5,7 @@ import login from "~/services/login";
 import { isPasswordValid } from "~/utils/passwordValidation";
 import { isUsernameValid } from "~/utils/usernameValidation";
 import ErrorBlock from "../ErrorBlock";
+import LoadingScreen from "../LoadingScreen";
 import "./login-style.scss";
 
 const Login = () => {
@@ -12,6 +13,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,11 +29,14 @@ const Login = () => {
           "Password must have eight characters, at least one letter, one number and one special character",
         );
       } else {
+        setIsLoading(true);
         await login(username, password);
         push(Routes.Users);
       }
     } catch (error) {
       setErrorMessage(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -57,6 +62,9 @@ const Login = () => {
         <button type="submit" className="button mt-24px">
           Login
         </button>
+        {isLoading ? (
+          <LoadingScreen text="Logging in..."></LoadingScreen>
+        ) : null}
       </form>
     </div>
   );
