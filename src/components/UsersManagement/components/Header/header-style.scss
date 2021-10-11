@@ -1,18 +1,43 @@
-@import '../../../../style/_variables';
+@import "../../../../style/_variables";
 
 .header {
   height: 160px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
   background-color: $red;
   color: white;
 
+  .menu {
+    width: 120px;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-shrink: 1;
+  }
+
   .user-section {
-    top: 16px;
-    right: 32px;;
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 20px;
+
+    .username {
+      color: white;
+      font-weight: bold;
+      border-radius: 9px;
+      background-color: $grey;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 18px;
+      margin: 0;
+      margin-bottom: 10px;
+    }
 
     button {
       font-size: larger;
@@ -21,7 +46,6 @@
       padding: 12px 18px;
       cursor: pointer;
       user-select: none;
-      margin-left: 12px;
       border-radius: 9px;
       border-width: 0;
     }
