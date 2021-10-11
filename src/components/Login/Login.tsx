@@ -2,8 +2,9 @@ import { SyntheticEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Routes } from "~/constants";
 import login from "~/services/login";
+import { isPasswordValid } from "~/utils/passwordValidation";
+import { isUsernameValid } from "~/utils/usernameValidation";
 import ErrorBlock from "../ErrorBlock";
-
 import "./login-style.scss";
 
 const Login = () => {
@@ -17,8 +18,18 @@ const Login = () => {
     setErrorMessage(null);
 
     try {
-      await login(username, password);
-      push(Routes.Users);
+      if (!isUsernameValid(username)) {
+        setErrorMessage(
+          "Username must have 8-20 characters and no underscores or dots",
+        );
+      } else if (!isPasswordValid(password)) {
+        setErrorMessage(
+          "Password must have eight characters, at least one letter, one number and one special character",
+        );
+      } else {
+        await login(username, password);
+        push(Routes.Users);
+      }
     } catch (error) {
       setErrorMessage(error.message);
     }
