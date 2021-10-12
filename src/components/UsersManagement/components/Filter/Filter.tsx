@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Routes } from "~/constants";
 import { IItem } from "~/services/getUserItems";
-import itemHasOldPassword from "~/utils/itemHasOldPassword";
+import itemHasOldEmail from "~/utils/itemHasOldEmail";
 import itemHasReusedPassword from "~/utils/itemHasReusedPassword";
 import itemHasWeakPassword from "~/utils/itemHasWeakPassword";
 import FilterTab from "./components/FilterTab";
@@ -22,7 +22,7 @@ const Filter: FC<IFilter> = ({ items }) => {
   ).length;
 
   const oldItemsCount = () =>
-    items.filter((item) => item === itemHasOldPassword(item)).length;
+    items.filter((item) => item === itemHasOldEmail(item)).length;
 
   return (
     <div className="filter">

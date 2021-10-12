@@ -9,7 +9,7 @@ import { Routes } from "~/constants";
 import itemHasWeakPassword from "~/utils/itemHasWeakPassword";
 import itemHasReusedPassword from "~/utils/itemHasReusedPassword";
 import { useUserContext } from "../UserContext";
-import itemHasOldPassword from "~/utils/itemHasOldPassword";
+import itemHasOldEmail from "~/utils/itemHasOldEmail";
 
 const UsersManagement = () => {
   const {
@@ -45,7 +45,7 @@ const UsersManagement = () => {
           />
         </Route>
         <Route path={Routes.Old}>
-          <List items={items.filter((item) => itemHasOldPassword(item))} />
+          <List items={items.filter((item) => itemHasOldEmail(item))} />
         </Route>
       </Switch>
     </div>
