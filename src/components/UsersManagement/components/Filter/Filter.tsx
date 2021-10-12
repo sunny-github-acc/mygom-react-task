@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Routes } from "~/constants";
 import { IItem } from "~/services/getUserItems";
 import itemHasOldEmail from "~/utils/itemHasOldEmail";
-import itemHasReusedPassword from "~/utils/itemHasReusedPassword";
+import itemHasReusedEmail from "~/utils/itemHasReusedEmail";
 import { isEmailValid } from "~/utils/validation/emailValidation";
 import FilterTab from "./components/FilterTab";
 import "./filter-style.scss";
@@ -12,23 +12,32 @@ interface IFilter {
 }
 
 const Filter: FC<IFilter> = ({ items }) => {
-  const wrongEmailsCount = items.filter(
+  const wrongEmailItemsCount = items.filter(
     (item) => !isEmailValid(item.email),
   ).length;
 
-  const reusedItemsCount = items.filter((item) =>
-    itemHasReusedPassword(item, items),
+  const reusedEmailItemsCount = items.filter((item) =>
+    itemHasReusedEmail(item, items),
   ).length;
 
-  const oldItemsCount = () =>
-    items.filter((item) => item === itemHasOldEmail(item)).length;
+  const oldEmailItemsCount = items.filter(
+    (item) => item === itemHasOldEmail(item),
+  ).length;
 
   return (
     <div className="filter">
       <FilterTab title="all" count={items.length} path={Routes.Users} />
-      <FilterTab title="Wrong" count={wrongEmailsCount} path={Routes.Wrong} />
-      <FilterTab title="Reused" count={reusedItemsCount} path={Routes.Reused} />
-      <FilterTab title="Old" count={oldItemsCount()} path={Routes.Old} />
+      <FilterTab
+        title="Wrong"
+        count={wrongEmailItemsCount}
+        path={Routes.Wrong}
+      />
+      <FilterTab
+        title="Reused"
+        count={reusedEmailItemsCount}
+        path={Routes.Reused}
+      />
+      <FilterTab title="Old" count={oldEmailItemsCount} path={Routes.Old} />
     </div>
   );
 };
