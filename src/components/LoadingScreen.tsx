@@ -1,6 +1,6 @@
-const LoadingScreen = () => (
+const LoadingScreen = ({ text = "Loading..." }) => (
   <div className="loading-screen">
-    Loading...
+    <div className="text">{text}</div>
   </div>
 );
 

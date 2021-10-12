@@ -1,4 +1,4 @@
-@import '../../../../style/_variables';
+@import "../../../../style/_variables";
 
 .list {
   list-style: none;
@@ -11,6 +11,8 @@
     border-bottom: 1px solid $grey-light;
     padding: 12px 6px;
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
     .item-icon {
       color: white;
@@ -25,6 +27,15 @@
       margin-right: 12px;
     }
 
+    .button-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title-container {
+      flex-grow: 1;
+    }
+
     .title {
       font-size: larger;
       font-weight: 600;
@@ -33,6 +44,7 @@
     .update {
       margin-left: auto;
       margin-right: 32px;
+      
     }
 
     &:hover {

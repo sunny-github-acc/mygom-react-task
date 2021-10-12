@@ -1,8 +1,10 @@
-@import './_variables';
-@import './_spacings';
-@import './__mixins.scss';
+@import "./_variables";
+@import "./_spacings";
+@import "./__mixins.scss";
 
-html, body, #app {
+html,
+body,
+#app {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -32,6 +34,18 @@ html, body, #app {
 .loading-screen {
   @include flex-center;
   font-size: large;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: rgba($teal, 0.5);
+
+  .text {
+    padding: 20px;
+    background: white;
+    border-radius: 4px;
+  }
 }
 
 .modal {
