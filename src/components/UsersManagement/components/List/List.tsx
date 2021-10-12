@@ -27,8 +27,14 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
         email: newEmail,
       });
     } catch {
-      setErrorMessage("Failed to updated email");
+      setErrorMessage("Failed to update email");
+
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 2000);
     }
+
+    setNewEmail("");
 
     setShowModal(false);
   }, []);
@@ -46,6 +52,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
         isOpen={showModal}
         onRequestClose={() => setShowModal(false)}
         contentLabel="Example Modal"
+        ariaHideApp={false}
       >
         <h1>Update Email</h1>
         <input
@@ -75,7 +82,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
 const List: FC<IList> = ({ items }) => (
   <ul className="list">
     {items.map((item) => (
-      <li className="item">
+      <li className="item" key={item.name}>
         <ItemIcon name={item.name} />
         <div className="title-container">
           <div className="title">{item.name}</div>

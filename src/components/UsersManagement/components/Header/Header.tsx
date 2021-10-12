@@ -2,6 +2,7 @@ import { FC, useCallback } from "react";
 import { useHistory } from "react-router";
 import { Routes } from "~/constants";
 import { IItem } from "~/services/getUserItems";
+import { isEmailValid } from "~/utils/validation/emailValidation";
 import logout from "../../../../services/logout";
 
 import "./header-style.scss";
@@ -16,14 +17,16 @@ const Header: FC<IHeader> = ({ items, username }) => {
 
   const handleLogout = useCallback(() => {
     logout();
-    push(Routes.Users);
+    push(Routes.Login);
   }, []);
 
   return (
     <div className="header">
       <div className="menu"></div>
       <div className="logo">
-        <h1>{`${items.length} Emails are wrong`}</h1>
+        <h1>{`${
+          items.filter((item) => !isEmailValid(item.email)).length
+        } Emails are wrong`}</h1>
         <span>
           Email validator to protect your company from bad registrations
         </span>

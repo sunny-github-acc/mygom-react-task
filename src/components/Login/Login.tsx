@@ -31,11 +31,11 @@ const Login = () => {
       } else {
         setIsLoading(true);
         await login(username, password);
+        setIsLoading(false);
         push(Routes.Users);
       }
     } catch (error) {
       setErrorMessage(error.message);
-    } finally {
       setIsLoading(false);
     }
   };
